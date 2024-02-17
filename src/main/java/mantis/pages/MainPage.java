@@ -1,5 +1,6 @@
 package mantis.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,6 +17,15 @@ public class MainPage {
     @FindBy(css = "a[href='/mantisbt/view_all_bug_page.php']")
     private WebElement viewIssuesPageButton;
 
+    @FindBy(xpath = "//*[@id='assigned']")
+    private WebElement assignedToMeBlock;
+
+    @FindBy(xpath = "//*[@id='unassigned']")
+    private WebElement unassignedBlock;
+
+    @FindBy(xpath = "//*[@id=\"sidebar\"]/ul/li[3]/a")
+    private WebElement reportIssuePageButton;
+
     public MainPage(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, 30, 500);
@@ -29,4 +39,20 @@ public class MainPage {
     public void goToViewIssuesPage() {
         viewIssuesPageButton.click();
     }
+
+    public boolean isUnassignedBlockDisplayed() {
+        return assignedToMeBlock.isDisplayed();
+    }
+
+        public boolean isAssignedToMeBlockDisplayed() {
+            return unassignedBlock.isDisplayed();
+        }
+
+        public String getTitleAssignedToMeBlock() {
+            return assignedToMeBlock.findElement(By.xpath("//h4//a")).getText();
+        }
+
+        public void goToViewIssuePage() {
+            viewIssuesPageButton.click();
+        }
 }
