@@ -14,15 +14,21 @@ public class PasswordPage {
     @FindBy(id = "password")
     private WebElement passwordField;
 
+    @FindBy(css = ".alert-danger p")
+    private WebElement errorMessage;
+
     public PasswordPage(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, 30, 500);
-
         PageFactory.initElements(driver, this);
     }
 
     public void login(String password) {
+
         passwordField.sendKeys(password);
         passwordField.sendKeys(Keys.ENTER);
+    }
+    public String getErrorMessage() {
+        return errorMessage.getText();
     }
 }

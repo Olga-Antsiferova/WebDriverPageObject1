@@ -51,8 +51,4 @@ public class MainPage {
         public String getTitleAssignedToMeBlock() {
             return assignedToMeBlock.findElement(By.xpath("//h4//a")).getText();
         }
-
-        public void goToViewIssuePage() {
-            viewIssuesPageButton.click();
-        }
 }
